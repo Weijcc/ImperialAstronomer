@@ -102,6 +102,7 @@ AssistantWidget::AssistantWidget(QWidget* parent)
 
         for (const auto& key : championLane.keys())
         {
+          QApplication::processEvents();
           auto position = championLane[key].toObject();
           auto winRate = position["lanewinrate"].toString().toDouble() / 100.0;
           auto pickRate = position["lanshowrate"].toString().toDouble() / 100.0;
@@ -164,6 +165,7 @@ AssistantWidget::AssistantWidget(QWidget* parent)
             auto championList = championFight[key].toArray();
             for (const auto& champion : championList)
             {
+              QApplication::processEvents();
               auto object = champion.toObject();
               auto cwinRate = object["winrate"].toString().toInt() / 100.0;
               auto cpickRate = object["champion2showrate"].toString().toInt() / 100.0;
@@ -262,9 +264,11 @@ AssistantWidget::AssistantWidget(QWidget* parent)
 
             for (const auto& firstKey : firstPerkDetail.keys())
             {
+              QApplication::processEvents();
               auto secondPerkDetail = firstPerkDetail[firstKey].toObject();
               for (const auto& secondKey : secondPerkDetail.keys())
               {
+                QApplication::processEvents();
                 auto object = secondPerkDetail[secondKey].toObject();
                 auto perkIds = object["perk"].toString().split('&');
                 auto pwinRate = object["winrate"].toDouble() / 100.0;
@@ -291,6 +295,7 @@ AssistantWidget::AssistantWidget(QWidget* parent)
 
                 for (auto index = 1; index < 6; index++)
                 {
+                  QApplication::processEvents();
                   auto perkId = perkIds[index].toInt();
                   auto pixmap = this->leagueClientUxAPI->readRuneIcon(perkId);
 
@@ -318,6 +323,7 @@ AssistantWidget::AssistantWidget(QWidget* parent)
                 {
                   for (auto index = 6; index < perkIds.count(); index++)
                   {
+                    QApplication::processEvents();
                     auto perkId = perkIds[index].toInt();
                     auto pixmap = this->leagueClientUxAPI->readRuneIcon(perkId);
 
