@@ -24,8 +24,6 @@ set(ResourceFile "${CMAKE_SOURCE_DIR}/ResourceFiles/BasicFiles/Icon.rc")
 
 qt_add_binary_resources(ResourceBinrary ${ResourceFiles})
 
-add_definitions(-DDEMO)
-
 qt_add_executable(${PROJECT_NAME} WIN32
     ${HeaderFiles}
     ${SourceFiles}
