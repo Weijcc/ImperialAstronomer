@@ -1,0 +1,599 @@
+/* QFrame Style */
+QFrame#MasterFrame,
+QFrame#AssistantFrame {
+  border: none;
+  border-radius: 0;
+  background: #03FFFFFF;
+}
+
+QFrame#MessageBoxFrame {
+  border: 2px solid #9575CD;
+  border-radius: 0;
+  background: #616161;
+}
+
+QFrame#HomeFrame,
+QFrame#MatchHistoryFrame,
+QFrame#OtherFunctionFrame {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+QFrame#SideFrame {
+  border: none;
+  border-radius: 0;
+  background: #F2B39DDB;
+}
+
+/* QGroupBox Style */
+QGroupBox#SideGroupBox {
+  border: none;
+  background: transparent;
+}
+
+QGroupBox#SummonerInfoGroupBox {
+  border: none;
+  border-radius: 0;
+  background: #F2B39DDB;
+}
+
+QGroupBox#FindMatchHistoryGroupBox {
+  border: none;
+  background: transparent;
+}
+
+QGroupBox#InfoModificationGroupBox {
+  border-radius: 0;
+  background: #424242;
+}
+
+/* QLabel Style */
+QLabel#SideLabel {
+  background: transparent;
+}
+
+QLabel#EchoTextLabel {
+  color: #FAFAFA;
+  font: 36px "slideyouran";
+}
+
+QLabel#EchoerTextLabel {
+  color: #FAFAFA;
+  font: 28px "slideyouran";
+}
+
+QLabel#SummonerIconLabel {
+  border-radius: 32px;
+}
+
+QLabel#SummonerNameLabel {
+  color: #303030;
+  font: 16px "HarmonyOS Sans SC";
+}
+
+QLabel#SummonerRegionLabel,
+QLabel#SummonerRankedLabel {
+  color: #303030;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QLabel#SummonerLevelLabel,
+QLabel#SummonerExpeTextLabel {
+  color: #303030;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QLabel#NoteTextLabel {
+  color: #FAFAFA;
+  font: 13px "HarmonyOS Sans SC";
+}
+
+QLabel#PerkTextLabel,
+QLabel#RankedTextLabel,
+QLabel#MasteryChampionTextLabel,
+QLabel#PreviousRankedTextLabel,
+QLabel#FriendListTextLabel,
+QLabel#RankDataListTextLabel,
+QLabel#RankFightDataTextLabel,
+QLabel#InfoModificationTextLabel,
+QLabel#GameDetailsListTextLabel,
+QLabel#MatchHistoryListTextLabel {
+  color: #FFFFFF;
+  background: transparent;
+  font: 14px "HarmonyOS Sans SC";
+  border-bottom: 2px solid #9575CD;
+}
+
+QLabel#StateTextLabel,
+QLabel#RankedEditTextLabel,
+QLabel#AutoBanTextLabel,
+QLabel#AutoPickTextLabel,
+QLabel#SignatureTextLabel,
+QLabel#CareerBackgroundTextLabel {
+  color: #FAFAFA;
+  background: transparent;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QLabel#AverageKDARateLabel,
+QLabel#AverageWinRateLabel,
+QLabel#AverageBanRateLabel,
+QLabel#AveragePosRateLabel,
+QLabel#AveragePickRateLabel {
+  color: #FFFFFF;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QLabel#ChampionNameLabel {
+  color: #FAFAFA;
+  background: transparent;
+  font: 20px "HarmonyOS Sans SC";
+}
+
+QLabel#FindSummonerTagSymbolLabel {
+  color: #FAFAFA;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+/* QPushButton Style */
+QPushButton#ClosePushButton {
+  border: none;
+  background: transparent;
+  image: url(:/ResourceFiles/BasicFiles/CloseDefault.png);
+}
+
+QPushButton#ClosePushButton::hover {
+  border: none;
+  background: transparent;
+  image: url(:/ResourceFiles/BasicFiles/CloseHover.png);
+}
+
+QPushButton#ClosePushButton::pressed {
+  border: none;
+  background: transparent;
+  image: url(:/ResourceFiles/BasicFiles/ClosePressed.png);
+}
+
+QPushButton#ExitButton,
+QPushButton#ApplyPerkPushButton,
+QPushButton#InfoChangePushButton,
+QPushButton#CreateLinkPushButton,
+QPushButton#SpectatePushButton,
+QPushButton#AddFriendPushButton,
+QPushButton#FindSummonerPushButton,
+QPushButton#LocalSummonerPushButton {
+  color: #303030;
+  border: none;
+  border-radius: 0;
+  background: #B39DDB;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QPushButton#ExitButton::hover,
+QPushButton#ApplyPerkPushButton::hover,
+QPushButton#InfoChangePushButton::hover,
+QPushButton#CreateLinkPushButton::hover,
+QPushButton#SpectatePushButton::hover,
+QPushButton#AddFriendPushButton::hover,
+QPushButton#FindSummonerPushButton::hover,
+QPushButton#LocalSummonerPushButton::hover {
+  background: #CCFAFAFA;
+}
+
+QPushButton#ExitButton::pressed,
+QPushButton#ApplyPerkPushButton::pressed,
+QPushButton#InfoChangePushButton::pressed,
+QPushButton#CreateLinkPushButton::pressed,
+QPushButton#SpectatePushButton::pressed,
+QPushButton#AddFriendPushButton::pressed,
+QPushButton#FindSummonerPushButton::pressed,
+QPushButton#LocalSummonerPushButton::pressed {
+  color: #FAFAFA;
+  background: #CC424242;
+}
+
+QPushButton#ExitButton::disabled,
+QPushButton#ApplyPerkPushButton::disabled,
+QPushButton#InfoChangePushButton::disabled,
+QPushButton#CreateLinkPushButton::disabled,
+QPushButton#SpectatePushButton::disabled,
+QPushButton#AddFriendPushButton::disabled,
+QPushButton#FindSummonerPushButton::disabled,
+QPushButton#LocalSummonerPushButton::disabled {
+  color: #FAFAFA;
+  background: #CC424242;
+}
+
+/* RadioButton Style */
+QRadioButton#HomePageRadioButton {
+  background: transparent;
+}
+
+QRadioButton#HomePageRadioButton::indicator {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/HomeDefault.png);
+}
+
+QRadioButton#HomePageRadioButton::indicator:hover {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/HomeHover.png);
+}
+
+QRadioButton#HomePageRadioButton::indicator:checked {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/HomePressed.png);
+}
+
+QRadioButton#MatchHistoryPageRadioButton {
+  background: transparent;
+}
+
+QRadioButton#MatchHistoryPageRadioButton::indicator {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/MatchHistoryDefault.png);
+}
+
+QRadioButton#MatchHistoryPageRadioButton::indicator:hover {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/MatchHistoryHover.png);
+}
+
+QRadioButton#MatchHistoryPageRadioButton::indicator:checked {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/MatchHistoryPressed.png);
+}
+
+QRadioButton#OtherFunctionPageRadioButton {
+  background: transparent;
+}
+
+QRadioButton#OtherFunctionPageRadioButton::indicator {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/OtherFunctionDefault.png);
+}
+
+QRadioButton#OtherFunctionPageRadioButton::indicator:hover {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/OtherFunctionHover.png);
+}
+
+QRadioButton#OtherFunctionPageRadioButton::indicator:checked {
+  width: 60px;
+  height: 58px;
+  image: url(:/ResourceFiles/BasicFiles/OtherFunctionPressed.png);
+}
+
+/* QListWidget Style */
+QListWidget#PerkListWidget,
+QListWidget#FriendListWidget,
+QListWidget#GameDetailsListWidget,
+QListWidget#MatchHistoryListWidget {
+  border: none;
+  border-radius: 0;
+  background: #66FAFAFA;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QListWidget#PerkListWidget::item,
+QListWidget#FriendListWidget::item,
+QListWidget#GameDetailsListWidget::item,
+QListWidget#MatchHistoryListWidget::item {
+  border-radius: 0;
+  background: #EDE7F6;
+}
+
+QListWidget#PerkListWidget::item:hover,
+QListWidget#FriendListWidget::item:hover,
+QListWidget#GameDetailsListWidget::item:hover,
+QListWidget#MatchHistoryListWidget::item:hover {
+  background: #D1C4E9;
+}
+
+QListWidget#PerkListWidget::item:selected,
+QListWidget#FriendListWidget::item:selected,
+QListWidget#GameDetailsListWidget::item:selected,
+QListWidget#MatchHistoryListWidget::item:selected {
+  color: #303030;
+  background: #D1C4E9;
+}
+
+QListWidget#PerkListWidget::focus,
+QListWidget#FriendListWidget::focus,
+QListWidget#GameDetailsListWidget::focus,
+QListWidget#MatchHistoryListWidget::focus {
+  outline: 0;
+}
+
+/* QTableWidget Style */
+QHeaderView {
+  color: #303030;
+  background: #D1C4E9;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QTableWidget#RankDataTableWidget,
+QTableWidget#RankedTableWidget,
+QTableWidget#AdvantagesTableWidget,
+QTableWidget#DisadvantagesTableWidget,
+QTableWidget#PreviousRankedTableWidget,
+QTableWidget#RankFightDataTableWidget,
+QTableWidget#MasteryChampionTableWidget {
+  border-radius: 0;
+  background: #66FAFAFA;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QTableWidget#RankDataTableWidget::item,
+QTableWidget#RankedTableWidget::item,
+QTableWidget#AdvantagesTableWidget::item,
+QTableWidget#DisadvantagesTableWidget::item,
+QTableWidget#PreviousRankedTableWidget::item,
+QTableWidget#RankFightDataTableWidget::item,
+QTableWidget#MasteryChampionTableWidget::item {
+  color: #424242;
+  border-radius: 0;
+  background: #EDE7F6;
+  border-bottom: 1px solid #F2B39DDB;
+}
+
+QTableWidget#RankDataTableWidget::item:selected,
+QTableWidget#RankedTableWidget::item:selected,
+QTableWidget#AdvantagesTableWidget::item:selected,
+QTableWidget#DisadvantagesTableWidget::item:selected,
+QTableWidget#PreviousRankedTableWidget::item:selected,
+QTableWidget#RankFightDataTableWidget::item:selected,
+QTableWidget#MasteryChampionTableWidget::item:selected {
+  color: #303030;
+  background: #1A8075CD;
+}
+
+QTableWidget#RankDataTableWidget::focus,
+QTableWidget#RankedTableWidget::focus,
+QTableWidget#AdvantagesTableWidget::focus,
+QTableWidget#DisadvantagesTableWidget::focus,
+QTableWidget#PreviousRankedTableWidget::focus,
+QTableWidget#RankFightDataTableWidget::focus,
+QTableWidget#MasteryChampionTableWidget::focus {
+  outline: 0;
+}
+
+/* QProgressBar Style */
+QProgressBar#SummonerExpeProgressBar {
+  color: #000000;
+  border-radius: 0;
+  text-align: center;
+  background: #CCFAFAFA;
+  font: 8px "JetBrains Mono Medium";
+}
+
+QProgressBar#SummonerExpeProgressBar::chunk {
+  border-radius: 0;
+  background: #424242;
+}
+
+/* QTabWidget Style */
+
+/* QScrollBar Style */
+QScrollBar {
+  width: 12px;
+  background: #D1C4E9;
+}
+
+QScrollBar::handle {
+  border: 1px solid #607D8B;
+  margin: 1px;
+}
+
+QScrollBar::handle:vertical {
+  background: #ECEFF1;
+}
+
+QScrollBar::handle:vertical:hover {
+  background: #757575;
+}
+
+QScrollBar::handle:horizontal {
+  background: #ECEFF1;
+}
+
+QScrollBar::handle:horizontal:hover {
+  background: #757575;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+  background: transparent;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+  height: 0;
+  width: 0;
+}
+
+/* QMenu Style */
+QMenu {
+  padding: 1px;
+  background: #E8EAF6;
+  border: 2px solid #9575CD;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+QMenu::item {
+  color: #303030;
+}
+
+QMenu::item:hover {
+  background: #F2B39DDB;
+}
+
+QMenu::item:selected {
+  background: #D1C4E9;
+}
+
+QMenu::item:disabled {
+  color: #757575;
+}
+
+/* QLineEdit */
+QLineEdit {
+  color: #303030;
+  border-radius: 0;
+  background: #E0E0E0;
+  border-bottom: 2px solid #9575CD;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+/* QComboBox */
+QComboBox {
+  color: #FAFAFA;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 2px solid #B39DDB;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QComboBox::drop-down {
+  border: none;
+}
+
+QComboBox::down-arrow {
+  width: 17px;
+  height: 17px;
+  image: url(:/ResourceFiles/BasicFiles/ArrowDown.png);
+}
+
+/* QAbstractItemView */
+QComboBox QAbstractItemView,
+QAbstractItemView#CompleterItemView {
+  outline: 0;
+  color: #424242;
+  border: 1px solid #9575CD;
+  background: #FFFFFF;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QComboBox QAbstractItemView::item:hover,
+QAbstractItemView#CompleterItemView::item:hover {
+  color: #424242;
+  background: #E1BEE7;
+}
+
+/* QPlainTextEdit */
+QPlainTextEdit#SignaturePlainTextEdit {
+  border: none;
+  border-radius: 0;
+  background: #CCFAFAFA;
+  font: 12px "HarmonyOS Sans SC";
+}
+
+/* QCheckBox */
+QCheckBox#AssistantCheckBox,
+QCheckBox#AutoAcceptCheckBox {
+  color: #FAFAFA;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QCheckBox#AssistantCheckBox::indicator,
+QCheckBox#AutoAcceptCheckBox::indicator {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  image: url(:/ResourceFiles/BasicFiles/CheckBoxDefault.png);
+}
+
+QCheckBox#AssistantCheckBox::indicator:checked,
+QCheckBox#AutoAcceptCheckBox::indicator:checked {
+  image: url(:/ResourceFiles/BasicFiles/CheckBoxChecked.png);
+}
+
+/* QTabWidget */
+QTabWidget#AlignmentTabWidget,
+QTabWidget#ChampionDetailsTabWidget {
+  background: #EDE7F6;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QTabWidget#AlignmentTabWidget::tab-bar,
+QTabWidget#ChampionDetailsTabWidget::tab-bar {
+  alignment: center;
+}
+
+QTabWidget#AlignmentTabWidget::pane,
+QTabWidget#ChampionDetailsTabWidget::pane {
+  border: none;
+}
+
+QTabBar::tab {
+  border: none;
+  color: #FAFAFA;
+  min-width: 52px;
+  min-height: 26px;
+  background: transparent;
+  font: 14px "HarmonyOS Sans SC";
+  border-bottom: 2px solid #FAFAFA;
+}
+
+QTabBar::tab:hover {
+  border-bottom: 2px solid #9575CD;
+}
+
+QTabBar::tab:selected {
+  border-bottom: 4px solid #9575CD;
+}
+
+
+QProgressBar#LoadingProgressBar {
+  color: #212121;
+  border-radius: 0;
+  text-align: center;
+  border: 1px solid #424242;
+  background-color: transparent;
+  font: 10px "JetBrains Mono Medium";
+}
+
+QProgressBar#LoadingProgressBar::chunk {
+  border-radius: 0;
+  background-color: #9575CD;
+}
+
+QToolTip {
+  border: 2px solid #9575CD;
+  border-radius: 0;
+  color: #303030;
+  background: #FCE4EC;
+  font: 14px "HarmonyOS Sans SC";
+}
+
+QToolButton#BilibiliToolButton,
+QToolButton#GithubToolButton {
+  color: #303030;
+  border-radius: 0;
+  background: #D1C4E9;
+  padding-top: 10px;
+  font: 16px "HarmonyOS Sans SC";
+}
+
+QToolButton#BilibiliToolButton::hover,
+QToolButton#GithubToolButton::hover {
+  background: #CCFAFAFA;
+}
+
+QToolButton#BilibiliToolButton::pressed,
+QToolButton#GithubToolButton::pressed {
+  color: #FAFAFA;
+  background: #CC424242;
+}

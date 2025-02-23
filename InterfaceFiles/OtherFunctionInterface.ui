@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OtherFunctionInterface</class>
+ <widget class="QWidget" name="OtherFunctionInterface">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>576</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string/>
+  </property>
+  <widget class="QFrame" name="OtherFunctionFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>576</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QGroupBox" name="InfoModificationGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>32</y>
+      <width>643</width>
+      <height>195</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPlainTextEdit" name="SignaturePlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>43</x>
+       <y>5</y>
+       <width>180</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::StrongFocus</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="SignatureTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>3</x>
+       <y>6</y>
+       <width>34</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>签名：</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="StateSelectComboBox">
+     <property name="geometry">
+      <rect>
+       <x>273</x>
+       <y>5</y>
+       <width>140</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>不修改</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>在线</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>离线</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>离开</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>在线分组</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="RankedSelectComboBox">
+     <property name="geometry">
+      <rect>
+       <x>273</x>
+       <y>35</y>
+       <width>140</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="StateTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>233</x>
+       <y>8</y>
+       <width>34</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>状态：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="RankedEditTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>233</x>
+       <y>38</y>
+       <width>34</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>段位：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="AutoPickTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>422</x>
+       <y>38</y>
+       <width>74</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动选英雄：</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="AutoPickChampionComboBox">
+     <property name="geometry">
+      <rect>
+       <x>498</x>
+       <y>35</y>
+       <width>140</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::StrongFocus</enum>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="AutoBanChampionComboBox">
+     <property name="geometry">
+      <rect>
+       <x>498</x>
+       <y>5</y>
+       <width>140</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::StrongFocus</enum>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="AutoBanTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>422</x>
+       <y>8</y>
+       <width>74</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动禁英雄：</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="InfoChangePushButton">
+     <property name="geometry">
+      <rect>
+       <x>538</x>
+       <y>160</y>
+       <width>100</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>修改</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="AutoAcceptCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>115</y>
+       <width>120</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动接受对局</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="AssistantCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>75</y>
+       <width>120</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>对局助手</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="CreateLinkPushButton">
+     <property name="geometry">
+      <rect>
+       <x>433</x>
+       <y>160</y>
+       <width>100</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>创建快捷方式</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="CareerBackgroundComboBox">
+     <property name="geometry">
+      <rect>
+       <x>43</x>
+       <y>70</y>
+       <width>384</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::StrongFocus</enum>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="CareerBackgroundTextLabel">
+     <property name="geometry">
+      <rect>
+       <x>3</x>
+       <y>71</y>
+       <width>34</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>背景：</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="InfoModificationTextLabel">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>4</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>其它功能：</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="BilibiliToolButton">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>132</y>
+      <width>220</width>
+      <height>95</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="GithubToolButton">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>32</y>
+      <width>220</width>
+      <height>95</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../ResourceFiles/Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
