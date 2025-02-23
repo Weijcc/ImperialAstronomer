@@ -43,7 +43,7 @@ dragon_path = '解压后的资源路径' + version
 - 其它文件 - UI相关
 
 ### ⚖️ 许可证
-- 司天监使用 [GPLv3](https://github.com/Weijcc/ImperialAstronomer/blob/v1.0.1/LICENSE) 许可证
+- 司天监使用 [GPLv3](https://github.com/Weijcc/ImperialAstronomer/blob/master/LICENSE) 许可证
 - 禁止针对代码和二进制文件的商业行为
 
 ### 🎊 感谢
