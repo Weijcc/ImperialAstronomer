@@ -39,7 +39,7 @@ dragon_path = '解压后的资源路径' + version
 ### 📄 源码相关
 - [build.ps1](build.ps1) - 编译脚本
 - [script.py](ScriptFiles/script.py) - 资源处理脚本
-- [LeagueAPI.cpp](SourceFiles\LeagueAPI.cpp) - LCU API实现
+- [LeagueAPI.cpp](SourceFiles/LeagueAPI.cpp) - LCU API实现
 - 其它文件 - UI相关
 
 ### ⚖️ 许可证
