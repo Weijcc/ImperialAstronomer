@@ -143,7 +143,6 @@ OtherFunctionWidget::OtherFunctionWidget(QWidget* parent)
               this->leagueClientUxAPI->readChampionIcon(championId),
               values.back(),
               championId);
-          QApplication::processEvents();
         }
         auto completer = new QCompleter(this->ui->AutoBanChampionComboBox->model(), this->ui->OtherFunctionFrame);
         completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -179,7 +178,6 @@ OtherFunctionWidget::OtherFunctionWidget(QWidget* parent)
               QPixmap(file),
               name,
               id);
-          QApplication::processEvents();
         }
         auto completer = new QCompleter(this->ui->CareerBackgroundComboBox->model(), this->ui->OtherFunctionFrame);
         completer->setCaseSensitivity(Qt::CaseInsensitive);

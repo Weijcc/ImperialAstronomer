@@ -298,7 +298,6 @@ void HomeWidget::updateFriendListWidget(const QJsonDocument& details)
 #endif
     item->setData(Qt::UserRole, object);
     this->ui->FriendListWidget->addItem(item);
-    QApplication::processEvents();
   }
 }
 
@@ -351,7 +350,6 @@ void HomeWidget::updateRankDataListWidget(const QJsonDocument& details)
     this->ui->RankDataTableWidget->setItem(index, 4, item);
     this->ui->RankDataTableWidget->setRowHeight(index, 36);
     headers.append(QString::asprintf("%02d", index + 1));
-    QApplication::processEvents();
   }
   this->ui->RankDataTableWidget->setVerticalHeaderLabels(headers);
 }
@@ -409,7 +407,6 @@ void HomeWidget::updateRankFightDataListWidget(const QJsonDocument& details)
     this->ui->RankFightDataTableWidget->setItem(index, 4, item);
     this->ui->RankFightDataTableWidget->setRowHeight(index, 36);
     headers.append(QString::asprintf("%02d", index + 1));
-    QApplication::processEvents();
   }
   this->ui->RankFightDataTableWidget->setVerticalHeaderLabels(headers);
 }

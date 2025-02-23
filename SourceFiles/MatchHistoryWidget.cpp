@@ -341,7 +341,6 @@ void MatchHistoryWidget::updateRankedListLabel(const QJsonDocument& details)
                 this->leagueClientUxAPI->readRankedShortName(tier.toUtf8()) + divisionText;
           }
         }
-        QApplication::processEvents();
       }
 
       for (auto index = 0; index < this->rankedListSummonerIdList.count(); index++)
@@ -355,9 +354,7 @@ void MatchHistoryWidget::updateRankedListLabel(const QJsonDocument& details)
           if (!value.second.isEmpty())
             this->gameRankedFlexLabelList.at(index)->setText("灵活：" + value.second);
         }
-        QApplication::processEvents();
       }
-      QApplication::processEvents();
     }
   }
   this->ui->MatchHistoryListWidget->setEnabled(true);
@@ -454,7 +451,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
     auto object = team.toObject();
     auto teamId = object["teamId"].toInt();
     teamItemDetails[teamId] = std::make_pair(false, object);
-    QApplication::processEvents();
   }
 
   for (const auto& participant : participants)
@@ -640,7 +636,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
         itemLabel->setGeometry(500 + banIdx * 32, 7, 30, 30);
         itemLabel->setStyleSheet("border: 2px solid #78909C;");
         itemLabel->setPixmap(championIcon);
-        QApplication::processEvents();
       }
 
       teamItemDetails[teamId].first = true;
@@ -768,7 +763,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
         itemLabel->setToolTip(this->leagueClientUxAPI->readItemData(itemId, version));
       }
       itemLabel->setPixmap(itemIcon);
-      QApplication::processEvents();
     }
 
     QList<int> perkIdList;
@@ -780,7 +774,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
       {
         perkIdList.push_back(selection.toObject()["perk"].toInt());
       }
-      QApplication::processEvents();
     }
 
     for (auto perkIdx = 0; perkIdx < 6; perkIdx++)
@@ -815,7 +808,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
       itemLabel->setToolTipDuration(60 * 1000);
       itemLabel->setToolTip(this->leagueClientUxAPI->readRuneData(perkIdList.at(perkIdx), version));
       itemLabel->setPixmap(perkIcon);
-      QApplication::processEvents();
     }
 
     if (riotIdTagline != "BOT")
@@ -829,7 +821,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
 
     this->ui->GameDetailsListWidget->addItem(item);
     this->ui->GameDetailsListWidget->setItemWidget(item, itemWidget);
-    QApplication::processEvents();
   }
 
   if (this->rankedListSummonerIdList.count())
@@ -839,7 +830,6 @@ void MatchHistoryWidget::updateGameDetailsListWidget(qint32 index)
   this->ui->GameDetailsListWidget->show();
   this->ui->FindMatchHistoryGroupBox->hide();
   this->ui->GameDetailsListTextLabel->show();
-  QApplication::processEvents();
 }
 
 void MatchHistoryWidget::updateMatchHistoryListWidget(const QJsonDocument& details)
@@ -884,7 +874,6 @@ void MatchHistoryWidget::updateMatchHistoryListWidget(const QJsonDocument& detai
     {
       if (this->monitorPuuid == participants.at(index).toString())
         monitorIndex = index;
-      QApplication::processEvents();
     }
 
     if (monitorIndex != -1)
@@ -913,7 +902,6 @@ void MatchHistoryWidget::updateMatchHistoryListWidget(const QJsonDocument& detai
         this->ui->MatchHistoryListWidget->addItem(item);
       }
     }
-    QApplication::processEvents();
   }
 
   this->ui->MatchHistoryListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -955,7 +943,6 @@ void MatchHistoryWidget::updateRankedTableWidget(const QJsonDocument& details)
     {
       rankedList.append(object);
     }
-    QApplication::processEvents();
   }
 
   QList<QString> headers;
@@ -994,7 +981,6 @@ void MatchHistoryWidget::updateRankedTableWidget(const QJsonDocument& details)
 
     this->ui->RankedTableWidget->setRowHeight(index, 36);
     headers.append(QString::asprintf("#%d", index + 1));
-    QApplication::processEvents();
   }
   this->ui->RankedTableWidget->setVerticalHeaderLabels(headers);
 
@@ -1033,7 +1019,6 @@ void MatchHistoryWidget::updateRankedTableWidget(const QJsonDocument& details)
 
     this->ui->PreviousRankedTableWidget->setRowHeight(index, 36);
     headers.append(QString::asprintf("#%d", index + 1));
-    QApplication::processEvents();
   }
   this->ui->PreviousRankedTableWidget->setVerticalHeaderLabels(headers);
   this->updatedBits |= (1 << 3);
@@ -1087,7 +1072,6 @@ void MatchHistoryWidget::updateMasteryChampionTableWidget(const QJsonDocument& d
     this->ui->MasteryChampionTableWidget->setItem(index, 3, item);
     this->ui->MasteryChampionTableWidget->setRowHeight(index, 36);
     headers.append(QString::asprintf("%02d", index + 1));
-    QApplication::processEvents();
   }
   this->ui->MasteryChampionTableWidget->setVerticalHeaderLabels(headers);
   this->updatedBits |= (1 << 4);

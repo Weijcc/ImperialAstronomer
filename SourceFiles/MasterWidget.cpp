@@ -389,13 +389,11 @@ MasterWidget::MasterWidget(QWidget* parent)
           for (auto index = value; index <= 180; index++)
           {
             this->loadingWidget->ui->LoadingProgressBar->setValue(index);
-            QApplication::processEvents();
             QThread::msleep(6);
           }
           this->loadingWidget->deleteLater();
           this->display();
         }
-        QApplication::processEvents();
       });
 
   connect(
