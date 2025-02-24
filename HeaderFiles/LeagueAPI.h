@@ -57,7 +57,7 @@ class LeagueAPI : public QObject
 
   Q_OBJECT
 
-  std::atomic<qint32> waitTime = 300;
+  std::atomic<qint32> waitTime = 200;
   std::atomic<bool> execFlag = false;
 
   QEventLoop* eventLoop = nullptr;
@@ -125,16 +125,9 @@ class LeagueAPI : public QObject
       std::bind(&LeagueAPI::monitorChampionMastery, this),
       std::bind(&LeagueAPI::monitorMatchmakingAutoAccept, this)};
 
-  const httplib::Headers headersLCU = {{"Accept", "*/*"}, {"Connection", "keep-alive"}, {"Cache-Control", "no-cache"}};
-  const httplib::Headers headersLOL = {
+  const httplib::Headers defaultHeaders = {
       {"Accept", "*/*"},
       {"Connection", "keep-alive"},
-      {"Cache-Control", "no-cache"},
-      {"Accept-Encoding", "gzip, deflate"}};
-  const httplib::Headers headersSGP = {
-      {"Accept", "*/*"},
-      {"Connection", "keep-alive"},
-      {"Cache-Control", "no-cache"},
       {"Accept-Encoding", "gzip, deflate"}};
 
   const QMap<QByteArray, QByteArray> regionDict = {
@@ -185,17 +178,17 @@ class LeagueAPI : public QObject
       {"CHALLENGER", "王者"}};
 
   const QList<std::pair<QByteArray, std::pair<QByteArray, QByteArray>>> rankedDivisionList = {
-      {"无段位", {"UNRANKED", ""}},       {"坚韧黑铁Ⅳ", {"IRON", "IV"}},     {"坚韧黑铁Ⅲ", {"IRON", "III"}},
-      {"坚韧黑铁Ⅱ", {"IRON", "II"}},      {"坚韧黑铁Ⅰ", {"IRON", "I"}},      {"英勇黄铜Ⅳ", {"BRONZE", "IV"}},
-      {"英勇黄铜Ⅲ", {"BRONZE", "III"}},   {"英勇黄铜Ⅱ", {"BRONZE", "II"}},   {"英勇黄铜Ⅰ", {"BRONZE", "I"}},
-      {"不屈白银Ⅳ", {"SILVER", "IV"}},    {"不屈白银Ⅲ", {"SILVER", "III"}},  {"不屈白银Ⅱ", {"SILVER", "II"}},
-      {"不屈白银Ⅰ", {"SILVER", "I"}},     {"荣耀黄金Ⅳ", {"GOLD", "IV"}},     {"荣耀黄金Ⅲ", {"GOLD", "III"}},
-      {"荣耀黄金Ⅱ", {"GOLD", "II"}},      {"荣耀黄金Ⅰ", {"GOLD", "I"}},      {"华贵铂金Ⅳ", {"PLATINUM", "IV"}},
+      {"无段位", {"UNRANKED", ""}}, {"坚韧黑铁Ⅳ", {"IRON", "IV"}}, {"坚韧黑铁Ⅲ", {"IRON", "III"}},
+      {"坚韧黑铁Ⅱ", {"IRON", "II"}}, {"坚韧黑铁Ⅰ", {"IRON", "I"}}, {"英勇黄铜Ⅳ", {"BRONZE", "IV"}},
+      {"英勇黄铜Ⅲ", {"BRONZE", "III"}}, {"英勇黄铜Ⅱ", {"BRONZE", "II"}}, {"英勇黄铜Ⅰ", {"BRONZE", "I"}},
+      {"不屈白银Ⅳ", {"SILVER", "IV"}}, {"不屈白银Ⅲ", {"SILVER", "III"}}, {"不屈白银Ⅱ", {"SILVER", "II"}},
+      {"不屈白银Ⅰ", {"SILVER", "I"}}, {"荣耀黄金Ⅳ", {"GOLD", "IV"}}, {"荣耀黄金Ⅲ", {"GOLD", "III"}},
+      {"荣耀黄金Ⅱ", {"GOLD", "II"}}, {"荣耀黄金Ⅰ", {"GOLD", "I"}}, {"华贵铂金Ⅳ", {"PLATINUM", "IV"}},
       {"华贵铂金Ⅲ", {"PLATINUM", "III"}}, {"华贵铂金Ⅱ", {"PLATINUM", "II"}}, {"华贵铂金Ⅰ", {"PLATINUM", "I"}},
-      {"流光翡翠Ⅳ", {"EMERALD", "IV"}},   {"流光翡翠Ⅲ", {"EMERALD", "III"}}, {"流光翡翠Ⅱ", {"EMERALD", "II"}},
-      {"流光翡翠Ⅰ", {"EMERALD", "I"}},    {"璀璨钻石Ⅳ", {"DIAMOND", "IV"}},  {"璀璨钻石Ⅲ", {"DIAMOND", "III"}},
-      {"璀璨钻石Ⅱ", {"DIAMOND", "II"}},   {"璀璨钻石Ⅰ", {"DIAMOND", "I"}},   {"超凡大师", {"MASTER", ""}},
-      {"傲世宗师", {"GRANDMASTER", ""}},  {"最强王者", {"CHALLENGER", ""}}};
+      {"流光翡翠Ⅳ", {"EMERALD", "IV"}}, {"流光翡翠Ⅲ", {"EMERALD", "III"}}, {"流光翡翠Ⅱ", {"EMERALD", "II"}},
+      {"流光翡翠Ⅰ", {"EMERALD", "I"}}, {"璀璨钻石Ⅳ", {"DIAMOND", "IV"}}, {"璀璨钻石Ⅲ", {"DIAMOND", "III"}},
+      {"璀璨钻石Ⅱ", {"DIAMOND", "II"}}, {"璀璨钻石Ⅰ", {"DIAMOND", "I"}}, {"超凡大师", {"MASTER", ""}},
+      {"傲世宗师", {"GRANDMASTER", ""}}, {"最强王者", {"CHALLENGER", ""}}};
 
   QMap<qint32, qint32> runeIdDict;
   QMap<qint32, QByteArray> queueDict;

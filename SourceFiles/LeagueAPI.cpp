@@ -62,7 +62,7 @@ bool LeagueAPI::initialize()
   this->requestLCU = new httplib::Client(this->SERVER.toStdString());
   this->requestLCU->enable_server_certificate_verification(false);
   this->requestLCU->set_basic_auth("riot", this->AUTH.toStdString());
-  this->requestLCU->set_default_headers(this->headersLCU);
+  this->requestLCU->set_default_headers(this->defaultHeaders);
   this->requestLCU->set_connection_timeout(1);
   this->requestLCU->set_write_timeout(1);
   this->requestLCU->set_read_timeout(1);
@@ -70,7 +70,7 @@ bool LeagueAPI::initialize()
 
   this->requestLOL = new httplib::Client("https://lol.qq.com");
   this->requestLOL->enable_server_certificate_verification(false);
-  this->requestLOL->set_default_headers(this->headersLOL);
+  this->requestLOL->set_default_headers(this->defaultHeaders);
   this->requestLOL->set_connection_timeout(1);
   this->requestLOL->set_write_timeout(1);
   this->requestLOL->set_read_timeout(1);
@@ -78,7 +78,7 @@ bool LeagueAPI::initialize()
 
   this->requestSGP = new httplib::Client(this->regionDictSGP[this->REGION].toStdString());
   this->requestSGP->enable_server_certificate_verification(false);
-  this->requestSGP->set_default_headers(this->headersSGP);
+  this->requestSGP->set_default_headers(this->defaultHeaders);
   this->requestSGP->set_connection_timeout(1);
   this->requestSGP->set_write_timeout(1);
   this->requestSGP->set_read_timeout(1);
@@ -319,7 +319,7 @@ void LeagueAPI::monitorSummoner()
       response = this->requestSGP->Get(
           "/match-history-query/v1/products/lol/player/"s + puuid.toStdString() + "/SUMMARY"s,
           httplib::Params{{"startIndex"s, "0"s}, {"count"s, "50"s}},
-          this->headersSGP);
+          this->defaultHeaders);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
           && this->matchHistoryBody != response->body)
       {
@@ -332,7 +332,7 @@ void LeagueAPI::monitorSummoner()
     else if (!name.isEmpty())
     {
       auto response = this->requestLCU->Get(
-          "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, name.toStdString()}}, this->headersLCU);
+          "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, name.toStdString()}}, this->defaultHeaders);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
       {
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -915,7 +915,7 @@ void LeagueAPI::modifySpectateSummoner(const QByteArray& details)
       while (retry--)
       {
         auto response = this->requestLCU->Get(
-            "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, fullName.toStdString()}}, this->headersLCU);
+            "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, fullName.toStdString()}}, this->defaultHeaders);
         if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
         {
           auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -1086,7 +1086,7 @@ void LeagueAPI::modifySummonerRankedList(const QList<qint64>& summonerIds, const
       auto response = this->requestLCU->Get(
           "/lol-ranked/v2/tiers"s,
           httplib::Params{{"summonerIds"s, summonerIds}, {"queueTypes"s, queueTypes}},
-          this->headersLCU);
+          this->defaultHeaders);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
       {
         auto document = QJsonDocument::fromJson(response->body.c_str());
