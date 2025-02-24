@@ -57,7 +57,7 @@ class LeagueAPI : public QObject
 
   Q_OBJECT
 
-  std::atomic<qint32> waitTime = 500;
+  std::atomic<qint32> waitTime = 300;
   std::atomic<bool> execFlag = false;
 
   QEventLoop* eventLoop = nullptr;
