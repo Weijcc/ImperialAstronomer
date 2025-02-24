@@ -17,7 +17,6 @@
 #include <QThreadPool>
 #include <QJsonObject>
 #include <QJsonDocument>
-#include <tuple>
 
 #define CPPHTTPLIB_ZLIB_SUPPORT
 #define CPPHTTPLIB_OPENSSL_SUPPORT
@@ -36,6 +35,10 @@ class LeagueAPI : public QObject
   public:
     template <typename Fx, typename... Fa>
     Runnable(Fx&& execute, Fa&&... args)
+      requires(
+          std::is_invocable_v<Fx, Fa...>
+          && (std::is_function_v<std::remove_pointer_t<std::decay_t<Fx>>>
+              || std::is_convertible_v<Fx, std::function<std::invoke_result_t<Fx, Fa...>(Fa...)>>))
     {
       this->handler = [function = execute, params = std::make_tuple(std::forward<Fa>(args)...)] {
         std::apply(function, params);
