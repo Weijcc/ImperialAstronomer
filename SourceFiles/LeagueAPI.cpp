@@ -26,15 +26,15 @@ bool LeagueAPI::initialize()
   QProcess process;
   process.setProgram("powershell.exe");
   process.setArguments(
-      {"-Command",
-       R"(Get-CimInstance -Query "SELECT * from Win32_Process WHERE name LIKE 'LeagueClientUx.exe'" | Select-Object -ExpandProperty CommandLine)"});
+  {"-Command",
+   R"(Get-CimInstance -Query "SELECT * from Win32_Process WHERE name LIKE 'LeagueClientUx.exe'" | Select-Object -ExpandProperty CommandLine)"});
   process.start();
   process.waitForFinished();
 
   auto standardOutput = process.readAllStandardOutput();
   if (standardOutput.isEmpty() || (standardOutput.indexOf("--app-port=") == -1)
-      || (standardOutput.indexOf("--install-directory") == -1)
-      || (standardOutput.indexOf("--remoting-auth-token") == -1) || (standardOutput.indexOf("--rso_platform_id") == -1))
+    || (standardOutput.indexOf("--install-directory") == -1)
+    || (standardOutput.indexOf("--remoting-auth-token") == -1) || (standardOutput.indexOf("--rso_platform_id") == -1))
   {
     return false;
   }
@@ -96,7 +96,7 @@ bool LeagueAPI::initialize()
 
   auto champions =
       QJsonDocument::fromJson(QResource(":/ResourceFiles/DataFiles/champion.json").uncompressedData())["data"]
-          .toObject();
+      .toObject();
   for (const auto& champion : champions)
   {
     auto object = champion.toObject();
@@ -107,14 +107,14 @@ bool LeagueAPI::initialize()
   emit this->readyAccessChampionDict(this->championDict);
 
   auto latest = QJsonDocument::fromJson(QResource(":/ResourceFiles/DataFiles/versions.json").uncompressedData())
-                    .array()
-                    .at(0)
-                    .toString();
+                .array()
+                .at(0)
+                .toString();
   latest = latest.mid(0, latest.lastIndexOf('.'));
 
   auto runeList = QJsonDocument::fromJson(
-                      QResource(":/ResourceFiles/DataFiles/runesReforged" + latest + ".json").uncompressedData())
-                      .array();
+          QResource(":/ResourceFiles/DataFiles/runesReforged" + latest + ".json").uncompressedData())
+      .array();
   for (const auto& rune : runeList)
   {
     auto object = rune.toObject();
@@ -140,7 +140,7 @@ bool LeagueAPI::initialize()
       auto version = dataFile.mid(0 + QString("item").size()).replace(".json", "").toUtf8();
       this->itemDict[version] =
           QJsonDocument::fromJson(QResource(":/ResourceFiles/DataFiles/" + dataFile).uncompressedData())["data"]
-              .toObject();
+          .toObject();
     }
     else if (dataFile.indexOf("runesReforged") == 0)
     {
@@ -293,7 +293,7 @@ void LeagueAPI::monitorSummoner()
       emit this->updateProgressRate("Loading monitor summoner...");
       auto response = this->requestLCU->Get("/lol-summoner/v2/summoners/puuid/"s + puuid.toStdString());
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-          && this->summonerBody != response->body)
+        && this->summonerBody != response->body)
       {
         this->summonerBody = response->body;
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -302,7 +302,7 @@ void LeagueAPI::monitorSummoner()
 
       response = this->requestLCU->Get("/lol-ranked/v1/ranked-stats/"s + puuid.toStdString());
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-          && this->rankedStatsBody != response->body)
+        && this->rankedStatsBody != response->body)
       {
         this->rankedStatsBody = response->body;
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -321,7 +321,7 @@ void LeagueAPI::monitorSummoner()
           httplib::Params{{"startIndex"s, "0"s}, {"count"s, "50"s}},
           this->defaultHeaders);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-          && this->matchHistoryBody != response->body)
+        && this->matchHistoryBody != response->body)
       {
         this->matchHistoryBody = response->body;
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -332,7 +332,9 @@ void LeagueAPI::monitorSummoner()
     else if (!name.isEmpty())
     {
       auto response = this->requestLCU->Get(
-          "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, name.toStdString()}}, this->defaultHeaders);
+          "/lol-summoner/v1/summoners"s,
+          httplib::Params{{"name"s, name.toStdString()}},
+          this->defaultHeaders);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
       {
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -355,7 +357,7 @@ void LeagueAPI::monitorAccessToken()
     emit this->updateProgressRate("Loading access token...");
     auto response = this->requestLCU->Get("/entitlements/v1/token"s);
     if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-        && this->accessTokenBody != response->body)
+      && this->accessTokenBody != response->body)
     {
       this->accessTokenBody = response->body;
       auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -374,62 +376,78 @@ void LeagueAPI::monitorLocalFriends()
     emit this->updateProgressRate("Loading local friends...");
     auto response = this->requestLCU->Get("/lol-chat/v1/friends"s);
     if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-        && this->localFriendsBody != response->body)
+      && this->localFriendsBody != response->body)
     {
       this->localFriendsBody = response->body;
       auto document = QJsonDocument::fromJson(response->body.c_str());
       auto friendsList = document.array().toVariantList();
-      std::sort(friendsList.begin(), friendsList.end(), [](const QVariant& first, const QVariant& second) {
-        auto firstAvailability = first.toJsonObject()["availability"].toString();
-        auto secondAvailability = second.toJsonObject()["availability"].toString();
-        if (firstAvailability != secondAvailability && firstAvailability != "offline" && firstAvailability != "away"
-            && firstAvailability != "dnd" && firstAvailability != "chat" && firstAvailability != "mobile")
-          return true;
-        return false;
-      });
-      std::sort(friendsList.begin(), friendsList.end(), [](const QVariant& first, const QVariant& second) {
-        auto firstAvailability = first.toJsonObject()["availability"].toString();
-        auto secondAvailability = second.toJsonObject()["availability"].toString();
-        if (firstAvailability != secondAvailability && firstAvailability == "mobile")
-          return true;
-        return false;
-      });
-      std::sort(friendsList.begin(), friendsList.end(), [](const QVariant& first, const QVariant& second) {
-        auto firstAvailability = first.toJsonObject()["availability"].toString();
-        auto secondAvailability = second.toJsonObject()["availability"].toString();
-        if (firstAvailability != secondAvailability && firstAvailability == "away")
-          return true;
-        return false;
-      });
-      std::sort(friendsList.begin(), friendsList.end(), [&](QVariant& first, QVariant& second) {
-        auto firstAvailability = first.toJsonObject()["availability"].toString();
-        auto secondAvailability = second.toJsonObject()["availability"].toString();
-        if (firstAvailability != secondAvailability && firstAvailability == "dnd")
-        {
-          auto puuid = first.toJsonObject()["puuid"].toString().toStdString();
+      std::sort(
+          friendsList.begin(),
+          friendsList.end(),
+          [](const QVariant& first, const QVariant& second) {
+            auto firstAvailability = first.toJsonObject()["availability"].toString();
+            auto secondAvailability = second.toJsonObject()["availability"].toString();
+            if (firstAvailability != secondAvailability && firstAvailability != "offline" && firstAvailability != "away"
+              && firstAvailability != "dnd" && firstAvailability != "chat" && firstAvailability != "mobile")
+              return true;
+            return false;
+          });
+      std::sort(
+          friendsList.begin(),
+          friendsList.end(),
+          [](const QVariant& first, const QVariant& second) {
+            auto firstAvailability = first.toJsonObject()["availability"].toString();
+            auto secondAvailability = second.toJsonObject()["availability"].toString();
+            if (firstAvailability != secondAvailability && firstAvailability == "mobile")
+              return true;
+            return false;
+          });
+      std::sort(
+          friendsList.begin(),
+          friendsList.end(),
+          [](const QVariant& first, const QVariant& second) {
+            auto firstAvailability = first.toJsonObject()["availability"].toString();
+            auto secondAvailability = second.toJsonObject()["availability"].toString();
+            if (firstAvailability != secondAvailability && firstAvailability == "away")
+              return true;
+            return false;
+          });
+      std::sort(
+          friendsList.begin(),
+          friendsList.end(),
+          [&](QVariant& first, QVariant& second) {
+            auto firstAvailability = first.toJsonObject()["availability"].toString();
+            auto secondAvailability = second.toJsonObject()["availability"].toString();
+            if (firstAvailability != secondAvailability && firstAvailability == "dnd")
+            {
+              auto puuid = first.toJsonObject()["puuid"].toString().toStdString();
 
-          this->requestSGP->set_bearer_token_auth(this->readAccessToken().toStdString());
-          response = this->requestSGP->Get(
-              "/gsm/v1/ledge/spectator/region/" + this->REGION.toLower().toStdString() + "/puuid/" + puuid);
+              this->requestSGP->set_bearer_token_auth(this->readAccessToken().toStdString());
+              response = this->requestSGP->Get(
+                  "/gsm/v1/ledge/spectator/region/" + this->REGION.toLower().toStdString() + "/puuid/" + puuid);
 
-          if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
-          {
-            auto playerCredentials = QJsonDocument::fromJson(response->body.c_str())["playerCredentials"].toObject();
-            auto object = first.toJsonObject();
-            object.insert("playerCredentials", playerCredentials);
-            first = QVariant::fromValue(object);
-          }
-          return true;
-        }
-        return false;
-      });
-      std::sort(friendsList.begin(), friendsList.end(), [](const QVariant& first, const QVariant& second) {
-        auto firstAvailability = first.toJsonObject()["availability"].toString();
-        auto secondAvailability = second.toJsonObject()["availability"].toString();
-        if (firstAvailability != secondAvailability && firstAvailability == "chat")
-          return true;
-        return false;
-      });
+              if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
+              {
+                auto playerCredentials = QJsonDocument::fromJson(response->body.c_str())["playerCredentials"].
+                    toObject();
+                auto object = first.toJsonObject();
+                object.insert("playerCredentials", playerCredentials);
+                first = QVariant::fromValue(object);
+              }
+              return true;
+            }
+            return false;
+          });
+      std::sort(
+          friendsList.begin(),
+          friendsList.end(),
+          [](const QVariant& first, const QVariant& second) {
+            auto firstAvailability = first.toJsonObject()["availability"].toString();
+            auto secondAvailability = second.toJsonObject()["availability"].toString();
+            if (firstAvailability != secondAvailability && firstAvailability == "chat")
+              return true;
+            return false;
+          });
 
       emit this->readyAccessMonitorLocalFriends(QJsonDocument(QJsonArray::fromVariantList(friendsList)));
       emit this->updateProgressRate("Loading local friends finished!");
@@ -465,7 +483,9 @@ void LeagueAPI::monitorRankFightData()
     while (true)
     {
       auto response = requestRankFightData.Get(
-          "/lol/lwdcommact/a20211015billboard/a20211015api/fight"s, requestParams, headersRankFightData);
+          "/lol/lwdcommact/a20211015billboard/a20211015api/fight"s,
+          requestParams,
+          headersRankFightData);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
       {
         QByteArray result(response->body);
@@ -501,7 +521,7 @@ void LeagueAPI::monitorLocalSummoner()
     QJsonDocument document;
     auto response = this->requestLCU->Get("/lol-summoner/v1/current-summoner"s);
     if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-        && this->localSummonerBody != response->body)
+      && this->localSummonerBody != response->body)
     {
       this->localSummonerBody = response->body;
       document = QJsonDocument::fromJson(response->body.c_str());
@@ -514,7 +534,7 @@ void LeagueAPI::monitorLocalSummoner()
     emit this->updateProgressRate("Loading local summoner ranked stats...");
     response = this->requestLCU->Get("/lol-ranked/v1/ranked-stats/"s + puuid.toStdString());
     if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-        && this->localRankedStatsBody != response->body)
+      && this->localRankedStatsBody != response->body)
     {
       this->localRankedStatsBody = response->body;
       document = QJsonDocument::fromJson(response->body.c_str());
@@ -682,7 +702,7 @@ void LeagueAPI::monitorChampionMastery()
       emit this->updateProgressRate("Loading local champion mastery...");
       auto response = this->requestLCU->Get("/lol-champion-mastery/v1/"s + puuid.toStdString() + "/champion-mastery"s);
       if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-          && this->championMasteryBody != response->body)
+        && this->championMasteryBody != response->body)
       {
         this->championMasteryBody = response->body;
         auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -701,7 +721,7 @@ void LeagueAPI::monitorMatchmakingAutoAccept()
   {
     auto response = this->requestLCU->Get("/lol-matchmaking/v1/ready-check"s);
     if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty()
-        && this->matchmakingAutoAccept.load())
+      && this->matchmakingAutoAccept.load())
     {
       auto document = QJsonDocument::fromJson(response->body.c_str());
       if (document["state"].toString() == "InProgress")
@@ -915,7 +935,9 @@ void LeagueAPI::modifySpectateSummoner(const QByteArray& details)
       while (retry--)
       {
         auto response = this->requestLCU->Get(
-            "/lol-summoner/v1/summoners"s, httplib::Params{{"name"s, fullName.toStdString()}}, this->defaultHeaders);
+            "/lol-summoner/v1/summoners"s,
+            httplib::Params{{"name"s, fullName.toStdString()}},
+            this->defaultHeaders);
         if (response && response->status == httplib::StatusCode::OK_200 && !response->body.empty())
         {
           auto document = QJsonDocument::fromJson(response->body.c_str());
@@ -953,7 +975,9 @@ void LeagueAPI::modifySpectateSummoner(const QByteArray& details)
     }
 
     auto response = this->requestLCU->Post(
-        "/lol-spectator/v1/spectate/launch"s, QJsonDocument(body).toJson().toStdString(), "application/json"s);
+        "/lol-spectator/v1/spectate/launch"s,
+        QJsonDocument(body).toJson().toStdString(),
+        "application/json"s);
 
     if (response && response->status == httplib::StatusCode::BadRequest_400)
     {
@@ -978,7 +1002,9 @@ void LeagueAPI::modifyLocalSummonerProfile(const QJsonDocument& body)
     while (retry--)
     {
       auto response = this->requestLCU->Post(
-          "/lol-summoner/v1/current-summoner/summoner-profile"s, data.toJson().toStdString(), "application/json"s);
+          "/lol-summoner/v1/current-summoner/summoner-profile"s,
+          data.toJson().toStdString(),
+          "application/json"s);
       if (response && response->status == httplib::StatusCode::OK_200)
       {
         break;
@@ -1040,7 +1066,9 @@ void LeagueAPI::modifyCurrentRunePage(const QList<QVariant>& runeIdList)
         while (retry--)
         {
           response = this->requestLCU->Post(
-              "/lol-perks/v1/pages"s, QJsonDocument(body).toJson().toStdString(), "application/json"s);
+              "/lol-perks/v1/pages"s,
+              QJsonDocument(body).toJson().toStdString(),
+              "application/json"s);
           if (response && response->status == httplib::StatusCode::OK_200)
           {
             this->modifyLobbyMessage("符文已应用，祝您游戏愉快！");
@@ -1133,7 +1161,9 @@ void LeagueAPI::friendRequest(const QByteArray& name)
     while (retry--)
     {
       auto response = this->requestLCU->Post(
-          "/lol-chat/v2/friend-requests"s, QJsonDocument(body).toJson().toStdString(), "application/json"s);
+          "/lol-chat/v2/friend-requests"s,
+          QJsonDocument(body).toJson().toStdString(),
+          "application/json"s);
       if (response && response->status == httplib::StatusCode::OK_200)
       {
         break;

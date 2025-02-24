@@ -26,35 +26,35 @@
 #include <TlHelp32.h>
 #include <tchar.h>
 
+class Runnable : public QRunnable
+{
+  std::function<void()> handler = nullptr;
+
+public:
+  template <typename Fx, typename... Fa>
+  Runnable(Fx&& execute, Fa&&... args)
+  {
+    this->handler = [function = execute, params = std::make_tuple(std::forward<Fa>(args)...)] {
+      std::apply(function, params);
+    };
+  }
+
+  Runnable() = default;
+  ~Runnable() = default;
+
+protected:
+  void run() override
+  {
+    if (this->handler)
+    {
+      this->handler();
+    }
+    QThread::currentThread()->exit();
+  }
+};
+
 class LeagueAPI : public QObject
 {
-  class Runnable : public QRunnable
-  {
-    std::function<void()> handler = nullptr;
-
-  public:
-    template <typename Fx, typename... Fa>
-    Runnable(Fx&& execute, Fa&&... args)
-    {
-      this->handler = [function = execute, params = std::make_tuple(std::forward<Fa>(args)...)] {
-        std::apply(function, params);
-      };
-    }
-
-    Runnable() = default;
-    ~Runnable() = default;
-
-  protected:
-    void run() override
-    {
-      if (this->handler)
-      {
-        this->handler();
-      }
-      QThread::currentThread()->exit();
-    }
-  };
-
   Q_OBJECT
 
   std::atomic<qint32> waitTime = 200;
